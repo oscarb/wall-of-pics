@@ -1,7 +1,9 @@
-package se.oscarb.wallofpics;
+package se.oscarb.wallofpics.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import se.oscarb.wallofpics.R;
 
 public class MainActivity extends AppCompatActivity {
 
