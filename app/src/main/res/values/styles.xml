@@ -29,5 +29,18 @@
         <item name="android:paddingRight">@dimen/search_bar_horizontal_padding</item>
         <item name="android:paddingTop">@dimen/search_bar_vertical_padding</item>
     </style>
-    
+
+
+    <style name="nsfw_warning">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:alpha">0.8</item>
+        <item name="android:background">@android:color/background_dark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

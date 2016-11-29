@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- TODO: Add viewmodel variable -->
+
+        <variable
+            name="viewModel"
+            type="se.oscarb.wallofpics.viewmodel.MainViewModel" />
     </data>
 
     <FrameLayout
@@ -29,7 +32,7 @@
                 android:id="@+id/coordinator_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="se.oscarb.wallofpics.view.MainActivity">
+                tools:context="se.oscarb.wallofpics.view.activity.MainActivity">
 
                 <include
                     android:id="@+id/content_main"

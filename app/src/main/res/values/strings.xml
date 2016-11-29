@@ -3,4 +3,7 @@
 
     <!-- Label that displays in search field before searching -->
     <string name="search_hint">Search pictures..…</string>
+
+    <!-- Label that displays over thumbnails with nsfw content -->
+    <string name="nsfw">NSFW</string>
 </resources>
