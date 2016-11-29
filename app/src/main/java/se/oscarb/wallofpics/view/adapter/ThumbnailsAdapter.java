@@ -28,6 +28,8 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailsAdapter.Vi
 
     public void setPhotoList(List<Photo> photos) {
         this.photos = photos;
+        //this.photos.clear();;
+        //this.photos.addAll(photos);
     }
 
     @Override

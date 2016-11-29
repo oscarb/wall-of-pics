@@ -1,10 +1,12 @@
 package se.oscarb.wallofpics.view.activity;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = new MainViewModel(this, this);
+        binding.setViewModel(mainViewModel);
 
         setupRecyclerView(binding.recyclerViewPhotos);
 
@@ -42,11 +45,22 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
 
     }
 
+    public void hideSoftKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != getCurrentFocus()) {
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
+        }
+    }
+
     @Override
     public void onDataChanged(List<Photo> photos) {
         // TODO: Update list of photos
         ThumbnailsAdapter adapter = (ThumbnailsAdapter) binding.recyclerViewPhotos.getAdapter();
         adapter.setPhotoList(photos);
         adapter.notifyDataSetChanged();
+/*
+        photos.clear();
+        photos.addAll(photoListing.getPhotos());
+        adapter.notifyDataSetChanged();*/
     }
 }

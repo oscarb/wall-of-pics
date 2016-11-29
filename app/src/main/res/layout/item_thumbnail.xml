@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
 
         <variable
             name="thumbnailViewModel"
@@ -20,6 +23,7 @@
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:imageUri="@{thumbnailViewModel.imageUrl}"
             fresco:actualImageScaleType="focusCrop"
             fresco:viewAspectRatio="1" />
 
@@ -28,7 +32,7 @@
             android:id="@+id/nsfw"
             style="@style/nsfw_warning"
             android:text="@string/nsfw"
-            android:visibility="gone" />
+            android:visibility="@{thumbnailViewModel.nsfw ? View.VISIBLE : View.GONE}" />
 
     </se.oscarb.wallofpics.view.widget.SquareFrameLayout>
 </layout>

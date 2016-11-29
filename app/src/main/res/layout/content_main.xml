@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View" />
-
-        <!-- TODO: Add viewmodel variable -->
+        <variable
+            name="viewModel"
+            type="se.oscarb.wallofpics.viewmodel.MainViewModel" />
     </data>
 
     <FrameLayout
@@ -18,14 +19,15 @@
 
         <include
             android:id="@+id/search_bar"
-            layout="@layout/layout_search_bar" />
+            layout="@layout/layout_search_bar"
+            bind:viewModel="@{viewModel}" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone" />
+            android:visibility="@{viewModel.progressBarVisibility}" />
 
         <!-- TOOD: Set visibility from viewmodel -->
         <TextView
@@ -33,8 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="@{viewModel.emptyStateText}"
             android:textAppearance="?android:attr/textAppearanceMediumInverse"
-            android:visibility="gone" />
+            android:visibility="@{viewModel.emptyStateVisibility}" />
 
     </FrameLayout>
 </layout>

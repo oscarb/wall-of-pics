@@ -23,9 +23,14 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
         this.photo = photo;
     }
 
-    @BindingAdapter("imageURI")
+    @BindingAdapter("imageUri")
     public static void setImageUri(SimpleDraweeView simpleDraweeView, String uri) {
         simpleDraweeView.setImageURI(Uri.parse(uri));
+    }
+
+
+    public String getImageUrl() {
+        return photo.getImageUrl(2);
     }
 
     public boolean isNsfw() {
@@ -34,7 +39,7 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
 
     public void onItemClick(View view) {
         //context.startActivity();
-        Toast.makeText(context, "Clicked thumbnail!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Clicked " + photo.getName(), Toast.LENGTH_SHORT).show();
     }
 
     // Recycle viewModel within adapter
