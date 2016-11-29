@@ -3,14 +3,18 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <import type="android.graphics.Color" />
+
+        <variable
+            name="thumbnailViewModel"
+            type="se.oscarb.wallofpics.viewmodel.ItemThumbnailViewModel" />
     </data>
 
-    <se.oscarb.wallofpics.SquareFrameLayout
+    <se.oscarb.wallofpics.view.widget.SquareFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background='@{Color.argb((int)Math.round(Math.random()*255), 0, 0, 0)}'>
+        android:background='@{Color.argb((int)Math.round(Math.random()*255), 0, 0, 0)}'
+        android:onClick="@{thumbnailViewModel.onItemClick}">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/thumbnail"
@@ -19,11 +23,12 @@
             fresco:actualImageScaleType="focusCrop"
             fresco:viewAspectRatio="1" />
 
+        <!-- TODO: Set visibility according to viewmodel -->
         <TextView
             android:id="@+id/nsfw"
             style="@style/nsfw_warning"
             android:text="@string/nsfw"
             android:visibility="gone" />
 
-    </se.oscarb.wallofpics.SquareFrameLayout>
+    </se.oscarb.wallofpics.view.widget.SquareFrameLayout>
 </layout>

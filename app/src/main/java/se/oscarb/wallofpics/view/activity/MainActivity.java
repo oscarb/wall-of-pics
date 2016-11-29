@@ -3,6 +3,7 @@ package se.oscarb.wallofpics.view.activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
@@ -32,11 +33,20 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setHasFixedSize(true);
         RecyclerView.Adapter adapter = new ThumbnailsAdapter();
+        recyclerView.setAdapter(adapter);
+
+        // LayoutManager
+        // TODO: Add code to calculate number of spans
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
 
     }
 
     @Override
     public void onDataChanged(List<Photo> photos) {
         // TODO: Update list of photos
+        ThumbnailsAdapter adapter = (ThumbnailsAdapter) binding.recyclerViewPhotos.getAdapter();
+        adapter.setPhotoList(photos);
+        adapter.notifyDataSetChanged();
     }
 }
