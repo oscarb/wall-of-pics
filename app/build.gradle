@@ -34,6 +34,8 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'
 
+    compile 'com.facebook.fresco:fresco:0.14.1'
+
     compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
 
