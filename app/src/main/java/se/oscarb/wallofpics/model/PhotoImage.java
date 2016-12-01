@@ -1,9 +1,12 @@
 package se.oscarb.wallofpics.model;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class PhotoImage {
-    private int size;
-    private String url;
-    private String format;
+    int size;
+    String url;
+    String format;
 
     public int getSize() {
         return size;

@@ -1,15 +1,18 @@
 package se.oscarb.wallofpics.model;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
+@Parcel
 public class Photo {
-    private int id;
-    private String name;
-    private String description;
-    private boolean nsfw;
-    private User user;
-    private List<PhotoImage> images;
-    private String url;
+    int id;
+    String name;
+    String description;
+    boolean nsfw;
+    User user;
+    List<PhotoImage> images;
+    String url;
 
     public String getName() {
         return (name == null || name.trim().equals("")) ? "Untitled" : name.trim();

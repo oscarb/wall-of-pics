@@ -8,16 +8,20 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.inputmethod.InputMethodManager;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 import se.oscarb.wallofpics.R;
 import se.oscarb.wallofpics.databinding.ActivityMainBinding;
 import se.oscarb.wallofpics.model.Photo;
 import se.oscarb.wallofpics.view.adapter.ThumbnailsAdapter;
+import se.oscarb.wallofpics.view.state.MainActivityState;
 import se.oscarb.wallofpics.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity implements MainViewModel.DataListener {
 
+    static final String STATE = "state";
     private ActivityMainBinding binding;
     private MainViewModel mainViewModel;
 
@@ -43,6 +47,27 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        ThumbnailsAdapter thumbnailsAdapter = (ThumbnailsAdapter) binding.recyclerViewPhotos.getAdapter();
+        List<Photo> photos = thumbnailsAdapter.getPhotoList();
+
+        MainActivityState state = new MainActivityState();
+        state.setPhotoList(photos);
+
+        outState.putParcelable(STATE, Parcels.wrap(state));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        MainActivityState state = Parcels.unwrap(savedInstanceState.getParcelable(STATE));
+        onDataChanged(state.getPhotoList());
     }
 
     public void hideSoftKeyboard() {

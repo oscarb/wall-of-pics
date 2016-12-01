@@ -46,9 +46,8 @@ public class MainViewModel implements ViewModel {
 
             if (!query.trim().isEmpty()) {
                 searchServiceForPictures(query);
+                view.clearFocus();
             }
-
-            view.clearFocus();
             handled = true;
         }
         return handled;
@@ -70,6 +69,7 @@ public class MainViewModel implements ViewModel {
         // Run request asynchronously
         call.enqueue(new PhotoSearchCallback());
 
+
     }
 
 
@@ -80,6 +80,7 @@ public class MainViewModel implements ViewModel {
     @Override
     public void destroy() {
         // Unsubscribe from stuff
+        // Cancel asynchronous actions?
     }
 
 
