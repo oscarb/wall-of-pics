@@ -1,15 +1,16 @@
 package se.oscarb.wallofpics.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.net.Uri;
 import android.view.View;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import se.oscarb.wallofpics.model.Photo;
+import se.oscarb.wallofpics.view.activity.DetailActivity;
 
 
 public class ItemThumbnailViewModel extends BaseObservable implements ViewModel {
@@ -38,8 +39,11 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
     }
 
     public void onItemClick(View view) {
-        //context.startActivity();
-        Toast.makeText(context, "Clicked " + photo.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, DetailActivity.class);
+
+
+        context.startActivity(intent);
+        //Toast.makeText(context, "Clicked " + photo.getName(), Toast.LENGTH_SHORT).show();
     }
 
     // Recycle viewModel within adapter

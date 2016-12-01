@@ -27,7 +27,6 @@
             fresco:actualImageScaleType="focusCrop"
             fresco:viewAspectRatio="1" />
 
-        <!-- TODO: Set visibility according to viewmodel -->
         <TextView
             android:id="@+id/nsfw"
             style="@style/nsfw_warning"

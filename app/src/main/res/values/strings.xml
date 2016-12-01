@@ -7,4 +7,5 @@
     <!-- Label that displays over thumbnails with nsfw content -->
     <string name="nsfw">NSFW</string>
     <string name="no_results">No results</string>
+    <string name="title_activity_details">Details</string>
 </resources>

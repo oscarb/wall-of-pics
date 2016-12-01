@@ -1,0 +1,35 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_dark"
+        tools:context="se.oscarb.wallofpics.view.activity.DetailActivity">
+
+        <!-- The primary full-screen view. This can be replaced with whatever view
+             is needed to present your content, e.g. VideoView, SurfaceView,
+             TextureView, etc. -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            fresco:actualImageScaleType="fitCenter" />
+
+        <!-- This FrameLayout insets its children based on system windows using
+             android:fitsSystemWindows. -->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <TextView
+                android:id="@+id/description"
+                style="@style/overlapping_description"
+                android:layout_gravity="bottom|center_horizontal" />
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>
