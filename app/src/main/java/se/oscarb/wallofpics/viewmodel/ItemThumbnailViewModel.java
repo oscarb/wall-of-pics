@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.parceler.Parcels;
+
 import se.oscarb.wallofpics.model.Photo;
 import se.oscarb.wallofpics.view.activity.DetailActivity;
 
@@ -40,7 +42,7 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
 
     public void onItemClick(View view) {
         Intent intent = new Intent(context, DetailActivity.class);
-
+        intent.putExtra("PHOTO", Parcels.wrap(photo));
 
         context.startActivity(intent);
         //Toast.makeText(context, "Clicked " + photo.getName(), Toast.LENGTH_SHORT).show();

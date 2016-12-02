@@ -4,6 +4,8 @@ import org.parceler.Parcel;
 
 import java.util.List;
 
+import se.oscarb.wallofpics.data.FiveHundredPxServiceGenerator;
+
 @Parcel
 public class Photo {
     int id;
@@ -34,9 +36,8 @@ public class Photo {
         return images;
     }
 
-    // TODO: Prepend with API base url
     public String getUrl() {
-        return (url == null) ? "" : url;
+        return (url == null) ? "" : FiveHundredPxServiceGenerator.BASE_URL + url;
     }
 
     // Get URL to thumbnail or larger photo

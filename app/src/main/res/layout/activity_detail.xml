@@ -1,6 +1,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="detailViewModel"
+            type="se.oscarb.wallofpics.viewmodel.DetailViewModel" />
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +23,12 @@
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            fresco:actualImageScaleType="fitCenter" />
+            android:onClick="@{detailViewModel.onPhotoClick}"
+            app:imageUri="@{detailViewModel.imageUrl}"
+            fresco:actualImageScaleType="fitCenter"
+
+
+            />
 
         <!-- This FrameLayout insets its children based on system windows using
              android:fitsSystemWindows. -->
@@ -28,7 +41,8 @@
             <TextView
                 android:id="@+id/description"
                 style="@style/overlapping_description"
-                android:layout_gravity="bottom|center_horizontal" />
+                android:layout_gravity="bottom|center_horizontal"
+                android:text="@{detailViewModel.description}" />
         </FrameLayout>
 
     </FrameLayout>
