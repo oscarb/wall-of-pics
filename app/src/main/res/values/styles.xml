@@ -18,6 +18,18 @@
 
     </style>
 
+    <style name="AppTheme.FullscreenThemeBase">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+
+    </style>
+
+
+    <style name="FullscreenTheme" parent="AppTheme.FullscreenThemeBase">
+
+    </style>
+
 
     <style name="search_bar_card_defaults">
         <item name="android:layout_width">match_parent</item>
@@ -66,5 +78,6 @@
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>
