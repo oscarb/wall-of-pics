@@ -3,6 +3,7 @@ package se.oscarb.wallofpics.view.adapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Collections;
@@ -38,6 +39,7 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailsAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemThumbnailBinding viewDataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_thumbnail, parent, false);
+        viewDataBinding.nsfw.setVisibility(View.GONE); // Avoid flickering of NSFW on first load
         return new ViewHolder(viewDataBinding);
     }
 

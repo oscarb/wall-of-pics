@@ -31,7 +31,8 @@
             android:id="@+id/nsfw"
             style="@style/nsfw_warning"
             android:text="@string/nsfw"
-            android:visibility="@{thumbnailViewModel.nsfw ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{thumbnailViewModel.nsfwWarningVisibility }" />
+
 
     </se.oscarb.wallofpics.view.widget.SquareFrameLayout>
 </layout>
