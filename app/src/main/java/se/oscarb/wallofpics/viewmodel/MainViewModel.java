@@ -29,11 +29,16 @@ public class MainViewModel implements ViewModel {
     private Context context;
     private DataListener dataListener;
     private SoftKeyboardHandler softKeyboardHandler;
+    private ErrorListener errorListener;
 
-    public MainViewModel(Context context, DataListener dataListener, SoftKeyboardHandler keyboardHandler) {
+    public MainViewModel(Context context,
+                         DataListener dataListener,
+                         SoftKeyboardHandler keyboardHandler,
+                         ErrorListener errorListener) {
         this.context = context;
         this.dataListener = dataListener;
         this.softKeyboardHandler = keyboardHandler;
+        this.errorListener = errorListener;
 
         progressBarVisibility = new ObservableInt(View.GONE);
         emptyStateVisibility = new ObservableInt(View.GONE);
@@ -101,6 +106,12 @@ public class MainViewModel implements ViewModel {
         void hideSoftKeyboard();
     }
 
+    public interface ErrorListener {
+        void onError(String errorMessage);
+
+        void onError(int errorResourceId);
+    }
+
     private class PhotoSearchCallback implements Callback<PhotoListing> {
         @Override
         public void onResponse(Call<PhotoListing> call, Response<PhotoListing> response) {
@@ -108,10 +119,7 @@ public class MainViewModel implements ViewModel {
             progressBarVisibility.set(View.GONE);
 
             if (!response.isSuccessful()) {
-                /*
-                Snackbar snackbar = Snackbar.make(binding.coordinatorLayout, R.string.error_message_response_unsuccessful, Snackbar.LENGTH_LONG);
-                snackbar.show();
-                */
+                errorListener.onError(R.string.error_message_response_unsuccessful);
                 return;
             }
 
@@ -133,9 +141,8 @@ public class MainViewModel implements ViewModel {
         @Override
         public void onFailure(Call<PhotoListing> call, Throwable t) {
             progressBarVisibility.set(View.GONE);
-/*
-            Snackbar snackbar = Snackbar.make(binding.coordinatorLayout, R.string.error_message_call_failure, Snackbar.LENGTH_LONG);
-            snackbar.show();*/
+            errorListener.onError(R.string.error_message_call_failure);
+
             t.printStackTrace();
         }
     }

@@ -15,6 +15,7 @@ import java.util.List;
 import se.oscarb.wallofpics.R;
 import se.oscarb.wallofpics.databinding.ActivityMainBinding;
 import se.oscarb.wallofpics.model.Photo;
+import se.oscarb.wallofpics.ui.SnackbarHelper;
 import se.oscarb.wallofpics.util.ScreenSizeUtil;
 import se.oscarb.wallofpics.view.adapter.ThumbnailsAdapter;
 import se.oscarb.wallofpics.view.state.MainActivityState;
@@ -31,7 +32,10 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainViewModel = new MainViewModel(this, this, this);
+
+        SnackbarHelper snackbarHelper = new SnackbarHelper(this, binding.coordinatorLayout);
+
+        mainViewModel = new MainViewModel(this, this, this, snackbarHelper);
         binding.setViewModel(mainViewModel);
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil(this, getWindowManager());
