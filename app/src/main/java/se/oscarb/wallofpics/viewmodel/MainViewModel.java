@@ -28,10 +28,12 @@ public class MainViewModel implements ViewModel {
     public ObservableField<String> emptyStateText;
     private Context context;
     private DataListener dataListener;
+    private SoftKeyboardHandler softKeyboardHandler;
 
-    public MainViewModel(Context context, DataListener dataListener) {
+    public MainViewModel(Context context, DataListener dataListener, SoftKeyboardHandler keyboardHandler) {
         this.context = context;
         this.dataListener = dataListener;
+        this.softKeyboardHandler = keyboardHandler;
 
         progressBarVisibility = new ObservableInt(View.GONE);
         emptyStateVisibility = new ObservableInt(View.GONE);
@@ -46,6 +48,11 @@ public class MainViewModel implements ViewModel {
             String query = view.getText().toString();
 
             if (!query.trim().isEmpty()) {
+
+                if (softKeyboardHandler != null) {
+                    softKeyboardHandler.hideSoftKeyboard();
+                }
+
                 searchServiceForPictures(query);
                 view.clearFocus();
             }
@@ -56,10 +63,9 @@ public class MainViewModel implements ViewModel {
 
     private void searchServiceForPictures(String query) {
         // Set query
-        int[] imageSizes = {
+        int[] imageSizeIds = {
                 ImageSizeHelper.getCroppedImageSizeId(Photo.getRequestedThumbnailWidth()),
                 ImageSizeHelper.getUncroppedImageSizeId(Photo.getRequestedImageWidth())};
-        // TODO: Set imageSizes automatically
 
         FiveHundredPxService service = FiveHundredPxServiceGenerator.getService();
 
@@ -67,7 +73,7 @@ public class MainViewModel implements ViewModel {
         emptyStateVisibility.set(View.GONE);
 
         // Talk to API
-        Call<PhotoListing> call = service.getListing(BuildConfig.CONSUMER_KEY, query, imageSizes);
+        Call<PhotoListing> call = service.getListing(BuildConfig.CONSUMER_KEY, query, imageSizeIds);
 
         // Run request asynchronously
         call.enqueue(new PhotoSearchCallback());
@@ -89,6 +95,10 @@ public class MainViewModel implements ViewModel {
 
     public interface DataListener {
         void onDataChanged(List<Photo> photos);
+    }
+
+    public interface SoftKeyboardHandler {
+        void hideSoftKeyboard();
     }
 
     private class PhotoSearchCallback implements Callback<PhotoListing> {

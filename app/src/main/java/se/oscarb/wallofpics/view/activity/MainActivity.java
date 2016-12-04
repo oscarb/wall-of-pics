@@ -20,7 +20,7 @@ import se.oscarb.wallofpics.view.adapter.ThumbnailsAdapter;
 import se.oscarb.wallofpics.view.state.MainActivityState;
 import se.oscarb.wallofpics.viewmodel.MainViewModel;
 
-public class MainActivity extends AppCompatActivity implements MainViewModel.DataListener {
+public class MainActivity extends AppCompatActivity implements MainViewModel.DataListener, MainViewModel.SoftKeyboardHandler {
 
     static final String STATE = "state";
     private ActivityMainBinding binding;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainViewModel = new MainViewModel(this, this);
+        mainViewModel = new MainViewModel(this, this, this);
         binding.setViewModel(mainViewModel);
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil(this, getWindowManager());
