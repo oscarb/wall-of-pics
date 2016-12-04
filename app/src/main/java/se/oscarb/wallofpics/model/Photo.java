@@ -8,6 +8,8 @@ import se.oscarb.wallofpics.data.FiveHundredPxServiceGenerator;
 
 @Parcel
 public class Photo {
+    private static int requestedThumbnailWidth;
+    private static int requestedImageWidth;
     int id;
     String name;
     String description;
@@ -15,6 +17,14 @@ public class Photo {
     User user;
     List<PhotoImage> images;
     String url;
+
+    public static void setRequestedImageWidth(int requestedImageWidth) {
+        Photo.requestedImageWidth = requestedImageWidth;
+    }
+
+    public static void setRequestedThumbnailWidth(int requestedThumbnailWidth) {
+        Photo.requestedThumbnailWidth = requestedThumbnailWidth;
+    }
 
     public String getName() {
         return (name == null || name.trim().equals("")) ? "Untitled" : name.trim();
@@ -38,6 +48,14 @@ public class Photo {
 
     public String getUrl() {
         return (url == null) ? "" : FiveHundredPxServiceGenerator.BASE_URL + url;
+    }
+
+    public String getImageUrl() {
+        return "";
+    }
+
+    public String getThumbnailUrl() {
+        return "";
     }
 
     // Get URL to thumbnail or larger photo

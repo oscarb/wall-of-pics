@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
-import android.databinding.ObservableInt;
 import android.net.Uri;
 import android.view.View;
 
@@ -18,7 +17,6 @@ import se.oscarb.wallofpics.view.activity.DetailActivity;
 
 public class ItemThumbnailViewModel extends BaseObservable implements ViewModel {
 
-    public ObservableInt nsfwWarningVisibility = new ObservableInt(View.GONE);
     private Context context;
     private Photo photo;
 
@@ -27,7 +25,6 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
         this.photo = photo;
 
         int visibility = photo.isNsfw() ? View.VISIBLE : View.GONE;
-        nsfwWarningVisibility = new ObservableInt(visibility);
     }
 
     @BindingAdapter("imageUri")
@@ -37,7 +34,13 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
 
 
     public String getImageUrl() {
+
+
         return photo.getImageUrl(2);
+    }
+
+    public boolean isNsfw() {
+        return photo.isNsfw();
     }
 
     public void onItemClick(View view) {

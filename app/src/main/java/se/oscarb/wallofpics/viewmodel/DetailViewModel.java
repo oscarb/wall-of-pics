@@ -2,7 +2,6 @@ package se.oscarb.wallofpics.viewmodel;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
-import android.net.Uri;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
@@ -36,12 +35,13 @@ public class DetailViewModel implements ViewModel {
     }
 
     @BindingAdapter("imageUri")
-    public static void setImageUri(SimpleDraweeView simpleDraweeView, String uri) {
-        simpleDraweeView.setImageURI(Uri.parse(uri));
+    public void setImageUri(SimpleDraweeView simpleDraweeView, String uri) {
+
+        simpleDraweeView.setImageURI(uri);
     }
 
     public String getImageUrl() {
-        return photo.getImageUrl(2);
+        return photo.getImageUrl(4);
     }
 
     public SpannableString getDescription() {

@@ -15,6 +15,7 @@ import java.util.List;
 import se.oscarb.wallofpics.R;
 import se.oscarb.wallofpics.databinding.ActivityMainBinding;
 import se.oscarb.wallofpics.model.Photo;
+import se.oscarb.wallofpics.util.ScreenSizeUtil;
 import se.oscarb.wallofpics.view.adapter.ThumbnailsAdapter;
 import se.oscarb.wallofpics.view.state.MainActivityState;
 import se.oscarb.wallofpics.viewmodel.MainViewModel;
@@ -43,8 +44,10 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         recyclerView.setAdapter(adapter);
 
         // LayoutManager
-        // TODO: Add code to calculate number of spans
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil(this, getWindowManager());
+        int spanCount = screenSizeUtil.getSpanCount(R.dimen.grid_target_width);
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         recyclerView.setLayoutManager(layoutManager);
 
     }
