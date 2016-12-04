@@ -33,17 +33,32 @@
         <!-- This FrameLayout insets its children based on system windows using
              android:fitsSystemWindows. -->
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:weightSum="10">
 
-            <TextView
-                android:id="@+id/description"
-                style="@style/overlapping_description"
-                android:layout_gravity="bottom|center_horizontal"
-                android:text="@{detailViewModel.description}" />
-        </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="@integer/description_to_height_ratio">
+
+                <TextView
+                    android:id="@+id/description"
+                    style="@style/overlapping_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:scrollbars="vertical"
+                    android:text="@{detailViewModel.description}" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
 
     </FrameLayout>
 </layout>
