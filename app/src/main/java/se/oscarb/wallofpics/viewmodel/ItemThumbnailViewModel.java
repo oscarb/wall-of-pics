@@ -34,9 +34,7 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
 
 
     public String getImageUrl() {
-
-
-        return photo.getImageUrl(2);
+        return photo.getThumbnailUrl();
     }
 
     public boolean isNsfw() {

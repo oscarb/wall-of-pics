@@ -17,6 +17,7 @@ import se.oscarb.wallofpics.BuildConfig;
 import se.oscarb.wallofpics.R;
 import se.oscarb.wallofpics.data.FiveHundredPxService;
 import se.oscarb.wallofpics.data.FiveHundredPxServiceGenerator;
+import se.oscarb.wallofpics.model.ImageSizeHelper;
 import se.oscarb.wallofpics.model.Photo;
 import se.oscarb.wallofpics.model.PhotoListing;
 
@@ -55,7 +56,9 @@ public class MainViewModel implements ViewModel {
 
     private void searchServiceForPictures(String query) {
         // Set query
-        int[] imageSizes = {1, 4};
+        int[] imageSizes = {
+                ImageSizeHelper.getCroppedImageSizeId(Photo.getRequestedThumbnailWidth()),
+                ImageSizeHelper.getUncroppedImageSizeId(Photo.getRequestedImageWidth())};
         // TODO: Set imageSizes automatically
 
         FiveHundredPxService service = FiveHundredPxServiceGenerator.getService();

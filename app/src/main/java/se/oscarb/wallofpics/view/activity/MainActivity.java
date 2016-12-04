@@ -34,18 +34,31 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         mainViewModel = new MainViewModel(this, this);
         binding.setViewModel(mainViewModel);
 
-        setupRecyclerView(binding.recyclerViewPhotos);
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil(this, getWindowManager());
+        int spanCount = screenSizeUtil.getSpanCount(R.dimen.grid_target_width);
+
+        setupRecyclerView(binding.recyclerViewPhotos, spanCount);
+        setupPhotoSizes(screenSizeUtil, spanCount);
 
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupPhotoSizes(ScreenSizeUtil screenSizeUtil, int spanCount) {
+
+        // Size for thumbnails
+        int thumbnailWidth = screenSizeUtil.getSpanWidth(spanCount);
+        Photo.setRequestedThumbnailWidth(thumbnailWidth);
+
+        // Size for detailed pictures
+        int screenLargestWidth = screenSizeUtil.getLargestWidth();
+        Photo.setRequestedImageWidth(screenLargestWidth);
+
+    }
+
+
+    private void setupRecyclerView(RecyclerView recyclerView, int spanCount) {
         recyclerView.setHasFixedSize(true);
         RecyclerView.Adapter adapter = new ThumbnailsAdapter();
         recyclerView.setAdapter(adapter);
-
-        // LayoutManager
-        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil(this, getWindowManager());
-        int spanCount = screenSizeUtil.getSpanCount(R.dimen.grid_target_width);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         recyclerView.setLayoutManager(layoutManager);

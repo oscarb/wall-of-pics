@@ -41,7 +41,7 @@ public class DetailViewModel implements ViewModel {
     }
 
     public String getImageUrl() {
-        return photo.getImageUrl(4);
+        return photo.getImageUrl();
     }
 
     public SpannableString getDescription() {
