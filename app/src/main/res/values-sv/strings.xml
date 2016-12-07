@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wall of Pics</string>
+
+    <!-- Label that displays in search field before searching -->
+    <string name="search_hint">Sök bilder…</string>
+
+    <!-- Label that displays over thumbnails with nsfw content -->
+    <string name="nsfw">NSFW</string>
+    <string name="no_results">Inga träffar</string>
+    <string name="title_activity_details">Detaljer</string>
+
+    <!-- Error messages -->
+
+    <string name="error_message_response_unsuccessful">Kan ej nå bildtjänsten</string>
+    <string name="error_message_call_failure">Ingen uppkoppling</string>
+</resources>
