@@ -36,9 +36,25 @@
                 tools:context="se.oscarb.wallofpics.view.activity.MainActivity">
 
                 <include
-                    android:id="@+id/content_main"
-                    layout="@layout/content_main"
+                    android:id="@+id/search_bar"
+                    layout="@layout/layout_search_bar"
                     bind:viewModel="@{viewModel}" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="@{viewModel.progressBarVisibility}" />
+
+                <TextView
+                    android:id="@+id/empty_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{viewModel.emptyStateText}"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:visibility="@{viewModel.emptyStateVisibility}" />
 
             </android.support.design.widget.CoordinatorLayout>
         </FrameLayout>

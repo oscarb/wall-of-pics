@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.View;
 
@@ -39,6 +40,11 @@ public class ItemThumbnailViewModel extends BaseObservable implements ViewModel 
 
     public boolean isNsfw() {
         return photo.isNsfw();
+    }
+
+    public int getBackgroundColor() {
+        // Set each items background to a random shade of black to create the checker pattern
+        return Color.argb((int) Math.round(Math.random() * 255), 0, 0, 0);
     }
 
     public void onItemClick(View view) {

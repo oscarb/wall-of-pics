@@ -12,5 +12,5 @@
     <!-- Error messages -->
 
     <string name="error_message_response_unsuccessful">Can\'t connect to picture service</string>
-    <string name="error_message_call_failure">Can\'t connect to the internet</string>
+    <string name="error_message_call_failure">No connection</string>
 </resources>

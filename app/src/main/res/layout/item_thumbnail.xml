@@ -4,8 +4,6 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.graphics.Color" />
-
         <import type="android.view.View" />
 
         <variable
@@ -16,7 +14,7 @@
     <se.oscarb.wallofpics.view.widget.SquareFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background='@{Color.argb((int)Math.round(Math.random()*255), 0, 0, 0)}'
+        android:background='@{thumbnailViewModel.backgroundColor}'
         android:onClick="@{thumbnailViewModel.onItemClick}">
 
         <com.facebook.drawee.view.SimpleDraweeView

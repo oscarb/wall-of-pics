@@ -83,12 +83,7 @@ public class MainViewModel implements ViewModel {
         // Run request asynchronously
         call.enqueue(new PhotoSearchCallback());
 
-
     }
-
-
-
-
 
 
     @Override
@@ -125,10 +120,10 @@ public class MainViewModel implements ViewModel {
 
             // Get list of photos and save them for configuration changes
             PhotoListing photoListing = response.body();
-            //DataHolder.getInstance().setPhotoList(photoListing.getPhotos());
 
             if (photoListing.getTotalItems() == 0) {
                 // TODO: Get and display the term that was searched for (No results for "monkeys")
+                emptyStateVisibility.set(View.VISIBLE);
                 emptyStateText.set(context.getString(R.string.no_results));
             }
 
