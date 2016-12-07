@@ -71,26 +71,23 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:alpha">0.8</item>
-        <item name="android:background">@android:color/background_dark</item>
+        <item name="android:background">@color/nsfw_warning_background</item>
         <item name="android:gravity">center</item>
-        <item name="android:textAlignment">center</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/nsfw_warning_text_color</item>
     </style>
 
     <style name="overlapping_description">
-
-        <item name="android:alpha">0.75</item>
         <item name="android:autoLink">web</item>
-        <item name="android:background">@android:color/background_dark</item>
+        <item name="android:background">@color/description_background</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/description_text_color</item>
     </style>
 </resources>

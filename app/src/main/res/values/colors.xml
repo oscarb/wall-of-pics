@@ -6,4 +6,12 @@
 
     <color name="main_background">#616161</color>
     <color name="active_icon">#8a8a8a</color>
+
+    <color name="nsfw_warning_background">#cc000000</color>
+    <color name="nsfw_warning_text_color">#bdbdbd</color>
+
+    <color name="description_background">#b4000000</color>
+    <color name="description_text_color">#e0e0e0</color>
+
+
 </resources>
