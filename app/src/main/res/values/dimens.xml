@@ -10,5 +10,5 @@
     <dimen name="search_bar_vertical_padding">16dp</dimen>
     <dimen name="search_bar_icon_padding">24dp</dimen>
 
-    <dimen name="grid_target_width">148dp</dimen>
+    <dimen name="grid_target_width">150dp</dimen>
 </resources>
