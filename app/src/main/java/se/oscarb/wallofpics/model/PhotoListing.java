@@ -15,4 +15,12 @@ public class PhotoListing {
     public int getTotalItems() {
         return total_items;
     }
+
+    public int getCurrentPage() {
+        return current_page;
+    }
+
+    public int getTotalPages() {
+        return total_pages;
+    }
 }

@@ -17,5 +17,9 @@ public interface FiveHundredPxService {
                                   @Query("term") String term,
                                   @Query("image_size[]") int[] imageSizeIds);
 
-
+    @GET("photos/search")
+    Call<PhotoListing> getListing(@Query("consumer_key") String consumerKey,
+                                  @Query("term") String term,
+                                  @Query("image_size[]") int[] imageSizeIds,
+                                  @Query("page") int page);
 }

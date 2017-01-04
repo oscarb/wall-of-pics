@@ -31,6 +31,9 @@ public class MainViewModel implements ViewModel {
     private SoftKeyboardHandler softKeyboardHandler;
     private ErrorListener errorListener;
 
+    private String searchTerm;
+    private int totalPages;
+
     public MainViewModel(Context context,
                          DataListener dataListener,
                          SoftKeyboardHandler keyboardHandler,
@@ -67,6 +70,23 @@ public class MainViewModel implements ViewModel {
     }
 
     private void searchServiceForPictures(String query) {
+        searchServiceForPictures(query, 1);
+    }
+
+    private void searchServiceForPictures(String query, int page) {
+
+        if (query == null || query.equals("")) {
+            return;
+        }
+
+        if (totalPages != 0 && page > totalPages) {
+            return;
+        }
+
+
+        // Save search term
+        searchTerm = query;
+
         // Set query
         int[] imageSizeIds = {
                 ImageSizeHelper.getCroppedImageSizeId(Photo.getRequestedThumbnailWidth()),
@@ -78,10 +98,20 @@ public class MainViewModel implements ViewModel {
         emptyStateVisibility.set(View.GONE);
 
         // Talk to API
-        Call<PhotoListing> call = service.getListing(BuildConfig.CONSUMER_KEY, query, imageSizeIds);
+        Call<PhotoListing> call = service.getListing(
+                BuildConfig.CONSUMER_KEY,
+                query,
+                imageSizeIds,
+                page);
 
         // Run request asynchronously
         call.enqueue(new PhotoSearchCallback());
+
+    }
+
+    public void loadPageFromService(int page) {
+        // What is the query to search for?
+        searchServiceForPictures(searchTerm, page);
 
     }
 
@@ -95,6 +125,8 @@ public class MainViewModel implements ViewModel {
 
     public interface DataListener {
         void onDataChanged(List<Photo> photos);
+
+        void onDataAdded(List<Photo> photos);
     }
 
     public interface SoftKeyboardHandler {
@@ -120,6 +152,7 @@ public class MainViewModel implements ViewModel {
 
             // Get list of photos and save them for configuration changes
             PhotoListing photoListing = response.body();
+            totalPages = photoListing.getTotalPages();
 
             if (photoListing.getTotalItems() == 0) {
                 // TODO: Get and display the term that was searched for (No results for "monkeys")
@@ -128,7 +161,12 @@ public class MainViewModel implements ViewModel {
             }
 
             if (dataListener != null) {
-                dataListener.onDataChanged(photoListing.getPhotos());
+                if (photoListing.getCurrentPage() == 1) {
+                    dataListener.onDataChanged(photoListing.getPhotos());
+                } else if (photoListing.getCurrentPage() > 1) {
+                    dataListener.onDataAdded(photoListing.getPhotos());
+                }
+
             }
 
         }

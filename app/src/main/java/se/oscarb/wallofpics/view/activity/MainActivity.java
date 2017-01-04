@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
     static final String STATE = "state";
     private ActivityMainBinding binding;
     private MainViewModel mainViewModel;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,15 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         recyclerView.setLayoutManager(layoutManager);
 
         // Enable endless scrolling
-        recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-
+                //Toast.makeText(MainActivity.this, "Loading page " + page + "(" + totalItemsCount + ")", Toast.LENGTH_LONG).show();
+                mainViewModel.loadPageFromService(page);
             }
-        });
+        };
+
+        recyclerView.addOnScrollListener(scrollListener);
 
     }
 
@@ -109,12 +113,26 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
     @Override
     public void onDataChanged(List<Photo> photos) {
         // TODO: Update list of photos
+
+
         ThumbnailsAdapter adapter = (ThumbnailsAdapter) binding.recyclerViewPhotos.getAdapter();
         adapter.setPhotoList(photos);
         adapter.notifyDataSetChanged();
+        scrollListener.resetState();
+
 /*
         photos.clear();
         photos.addAll(photoListing.getPhotos());
         adapter.notifyDataSetChanged();*/
+    }
+
+    @Override
+    public void onDataAdded(List<Photo> photos) {
+        // TODO: Update list of photos
+        ThumbnailsAdapter adapter = (ThumbnailsAdapter) binding.recyclerViewPhotos.getAdapter();
+        int positionStart = adapter.getItemCount();
+        adapter.addPhotoList(photos);
+        adapter.notifyItemRangeInserted(positionStart, photos.size());
+
     }
 }
