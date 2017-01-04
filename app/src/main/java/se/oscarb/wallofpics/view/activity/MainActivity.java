@@ -15,6 +15,7 @@ import java.util.List;
 import se.oscarb.wallofpics.R;
 import se.oscarb.wallofpics.databinding.ActivityMainBinding;
 import se.oscarb.wallofpics.model.Photo;
+import se.oscarb.wallofpics.ui.EndlessRecyclerViewScrollListener;
 import se.oscarb.wallofpics.ui.SnackbarHelper;
 import se.oscarb.wallofpics.util.ScreenSizeUtil;
 import se.oscarb.wallofpics.view.adapter.ThumbnailsAdapter;
@@ -64,8 +65,16 @@ public class MainActivity extends AppCompatActivity implements MainViewModel.Dat
         RecyclerView.Adapter adapter = new ThumbnailsAdapter();
         recyclerView.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, spanCount);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         recyclerView.setLayoutManager(layoutManager);
+
+        // Enable endless scrolling
+        recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
+            }
+        });
 
     }
 
