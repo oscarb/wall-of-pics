@@ -9,6 +9,7 @@ import android.view.View;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import se.oscarb.wallofpics.model.Photo;
+import se.oscarb.wallofpics.util.HtmlCompat;
 
 public class DetailViewModel implements ViewModel {
 
@@ -44,9 +45,12 @@ public class DetailViewModel implements ViewModel {
         return photo.getImageUrl();
     }
 
+    @SuppressWarnings("deprecation")
     public SpannableString getDescription() {
         String title = isActionBarTitleTruncated() ? photo.getName() + "\n" : "";
-        String description = photo.getDescription().equals("") ? "" : photo.getDescription() + "\n";
+
+        // Strip HTML from description
+        String description = photo.getDescription().equals("") ? "" : HtmlCompat.stripHtml(photo.getDescription() + "\n");
         String information = title + description + "© " + photo.getUser().getName() + " / 500px \n\n";
         information += photo.getUrl();
 
