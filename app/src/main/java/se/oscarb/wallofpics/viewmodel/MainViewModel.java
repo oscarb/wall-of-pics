@@ -102,7 +102,8 @@ public class MainViewModel implements ViewModel {
                 BuildConfig.CONSUMER_KEY,
                 query,
                 imageSizeIds,
-                page);
+                page,
+                100);
 
         // Run request asynchronously
         call.enqueue(new PhotoSearchCallback());
